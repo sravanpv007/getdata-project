@@ -1,25 +1,104 @@
-https://class.coursera.org/getdata-003/human_grading/view/courses/972136/assessments/3/submissions
 
 
-The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
 
-One of the most exciting areas in all of data science right now is wearable computing - see for example this article.
+==================================
+05/24/14 18:35:35
 
-  http://www.insideactivitytracking.com/data-science-activity-tracking-and-the-battle-for-the-worlds-top-sports-brand/
+Just to reiterate, what is tidy data?
 
-Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
+  1. Each variable forms a column.
+  2. Each observation forms a row.
+  3. Each type of observational unit forms a table.
 
-  http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-Here are the data for the project:
+five most common problems with messy datasets, along with their remedies:
+  
+  • column headers are values, not variable names
+  • multiple variables are stored in one column
+  • variables are stored in both rows and columns
+  • multiple types of observational units are stored in the same table
+  • a single observational unit is stored in multiple tables
 
-  https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-You should create one R script called run_analysis.R that does the following.
+I just cannot make this intuitive. I cannot get intuition about this. What is blocking me? Is it really that hard to make a tidy table? I've watched the lecture dozens of times. It made sense, but now I am at a loss. I cannot grasp the concepts at all. I am staring at the screen agog, and this is not making any impression on me whatsoever. I am a fool.
 
-  Merges the training and the test sets to create one data set.
-  Extracts only the measurements on the mean and standard deviation for each measurement.
-  Uses descriptive activity names to name the activities in the data set
-  Appropriately labels the data set with descriptive activity names.
-  Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+What is an observational unit?
+
+  ?????
+
+How can I convert a tall table into a wide table?
+
+  ?????
+
+
+
+
+
+
+==================================
+05/24/14 17:00:55
+
+
+First entry. This project requires me to tidy up a dirty dataset.
+
+
+I'm stuck:
+
+  # Merges the training and the test sets to create one data set.
+
+What does this even mean? Which column do I merge on? Perhaps I merge on all of them. But the thing is these datasets have no column names at all. I am totally clueless. I think the training data is in X_train.txt. The labels of the same are in y_train.txt.
+
+The community TA gives some tips on the project:
+
+  The explanation is as important as the script, so make sure you have the read me
+
+  have you combined the training and test x and y into one block, given them headings, and turned the numeric activities into something easier to read. Think of it as you data files are blocks of lego and you are working out how to clip them together to make a wall.
+
+  have you extracted some variables to do with mean and standard deviation from the full set. I am being non-specific here because in this assignment you are using you professional judgement about which variables to include and documenting your reasoning. There is no specific number of columns that is correct.
+
+  have you explained what those variables are and your criteria for picking them in the readMe
+
+  have you gotten the average of each variable for each combination of subject and activity and saved the data frame of this as a set of tidy data
+
+  have you give the variables English-like descriptive names describing the activity that the sensor is measuring? (this is a slightly, or indeed very, horribly worded part of the assignment)
+
+  remember that codebook you had to learn to use in the week 1 quiz, now it * is time to create your own describing those descriptive English named variables you decided to use. The codebook should go on github to. have you loaded up your current script, an up to date read me and the codebook to github?
+
+  and your tidy data to coursera- Important load in a text file of the data (or at least some kind of file). Do not try and copy and paste in all your tidy data. Very, very bad things might happen to your submission. Do not experiment to find out what, just trust me on this from previous experience. Add a file like it says in the instructions. Personally, I think it is a reasonable assumption to figure that anyone doing this course is able to deal with a tab delimited text file like you get by taking your data and doing write.table().
+
+  Now if you skipped over the Toolbox course, you might not be familiar with markdown. The emergency brief description is that it is a text file with blank lines separating ever paragraph, headings on lines starting with hash symbols
+
+I keep yawning. This assignment simply does not grab me like the others. There is no intellectual stimulation. No challenge, except for the boredom of trying to get accustomed to big datasets. I'm bored. But I need to persevere. This assignment is due tomorrow, and it's one of my milestone markers.
+
+
+More feedback:
+
+  "1. Merges the training and the test sets to create one data set."
+
+  You can ignore the inertial signals folder, and just concentrate on the subject, x and y files.  You should create on data set that combines all the info from these 6 files (three in train and three in test folders).
+
+  "2. Extracts only the measurements on the mean and standard deviation for each measurement."
+  "Extract it where? Console prompt line? A data frame? A data file? "
+
+  Good question.  I have just extracted it to a data file.  To see what's in it the user would have to look at the data file in the console or workspace.  Not sure if this is OK or not.
+
+
+More feedback:
+
+  You should create one R script called run_analysis.R that does the following.
+
+    Merges the training and the test sets to create one data set Read the README.txt file in the UCI HAR Dataset folder. There you will understand which files you should read with R studio into data frames from the train and test folders, work on them parallely using the common names in the features file. (I did not use the Inertial Signals folders at all). After doing all of this, you can merge the dataframes into the one dataset the question asks for.
+
+    Extracts only the measurements on the mean and standard deviation for each measurement. The features_info.txt file will give you a clue on how to find the columns that contain mean and standard deviation info. I created a subset extracting these columns (and the columns I need to merge like subject (subject number), group partition (train or test), and activity (sitting, walking, etc).  I recommend reading ahead into the week 4 lectures to do this part, it REALLY helps (specially the first lecture).
+
+    Uses descriptive activity names to name the activities in the data set  The activity (sitting, walking) is numbered in the original test and train files. Use the activity_labels.txt file to change these numbers into their corresponding names, which clearly describe the activity.
+
+    Appropriately labels the data set with descriptive activity names. This was the instruction tha I found more vague, and I read a lot of different ideas around it. Because there are a lot of differente rules on different bibliography, I decided to use the first video lecture of week 4 to decide what "appropriate" was. Forget the reuse of the word "activity" as it refers to all the columns and not the sitting, walking, etc column. Also, use the text editing functions you will learn there to create the new column names, ONLY for the data set you have now (the subset after step 2).
+
+    Creates a second, independent tidy data set with the average of each variable for each activity and each subject.  Here, I created subgroups by subject and activity (these generates 180 subgroups as there are 30 subjects and 6 activities). For each subgroup there must be a row in this new data set, with the mean of each column of each subgroup. My tidy data set included 89 columns (first three were subject, group partition (train or test) and activity name, and the other 86 were the means of each column of each sobgroup.)
+
+
+How to make a variable table in md?
+
+  https://class.coursera.org/getdata-003/forum/thread?thread_id=269
 
